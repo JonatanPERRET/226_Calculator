@@ -1,5 +1,5 @@
 ﻿using System;
-
+using MathsLib;
 namespace Calculator
 {
     class Program
@@ -17,6 +17,8 @@ namespace Calculator
             char oper;
             #endregion Variables declaration
 
+            MathsBasicOperation _maths = new MathsBasicOperation();
+
             oper = AskUserForCharInput("Enter operator");
 
             while (oper != '#')
@@ -31,16 +33,16 @@ namespace Calculator
                 switch (oper)
                 {
                     case ('+'):
-                        result = Add(op1, op2);
+                        result =  _maths.Add(op1, op2);
                         break;
                     case ('-'):
-                        result = Substract(op1, op2);
+                        result = _maths.Substract(op1, op2);
                         break;
                     case ('*'):
-                        result = Multiply(op1, op2);
+                        result = _maths.Multiply(op1, op2);
                         break;
                     case ('/'):
-                        result = Divide(op1, op2);
+                        result = _maths.Divide(op1, op2);
                         break;
                     default:
                         DisplayMessage("Operator not supported");
@@ -82,28 +84,5 @@ namespace Calculator
             Console.WriteLine(message);
         }
         #endregion GUI
-
-        #region Perfom calculations
-        static private int Add(int op1, int op2)
-        {
-            return op1 + op2;
-        }
-
-        static private int Substract(int op1, int op2)
-        {
-            return op1 - op2;
-        }
-
-        static private int Multiply(int op1, int op2)
-        {
-            return op1 * op2;
-        }
-
-        static private int Divide(int op1, int op2)
-        {
-            return op1 / op2;
-        }
-
-        #endregion Perfom calculations
     }
 }
