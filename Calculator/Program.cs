@@ -17,7 +17,7 @@ namespace Calculator
             char oper;
             #endregion Variables declaration
 
-            MathsBasicOperation _maths = new MathsBasicOperation();
+            
 
             oper = AskUserForCharInput("Enter operator");
 
@@ -30,24 +30,7 @@ namespace Calculator
                 #endregion User input and variable initialization
 
                 #region Perform calculations
-                switch (oper)
-                {
-                    case ('+'):
-                        result =  _maths.Add(op1, op2);
-                        break;
-                    case ('-'):
-                        result = _maths.Substract(op1, op2);
-                        break;
-                    case ('*'):
-                        result = _maths.Multiply(op1, op2);
-                        break;
-                    case ('/'):
-                        result = _maths.Divide(op1, op2);
-                        break;
-                    default:
-                        DisplayMessage("Operator not supported");
-                        goto End;
-                }
+                result = PerformCalculation(op1, oper, op2);
 
                 #endregion Perform calculations
 
@@ -59,6 +42,29 @@ namespace Calculator
             }
             End:
             DisplayMessage("You choose to leave...");
+        }
+
+        static private int PerformCalculation(int op1, char oper, int op2)
+        {
+            MathsBasicOperation _maths = new MathsBasicOperation();
+
+            switch (oper)
+            {
+                case ('+'):
+                    return _maths.Add(op1, op2);
+                case ('-'):
+                    return _maths.Substract(op1, op2);
+                case ('*'):
+                    return _maths.Multiply(op1, op2);
+                case ('/'):
+                    return _maths.Divide(op1, op2);
+                    //TODO manage Exeption
+                /*default:
+                    DisplayMessage("Operator not supported");
+                    goto End;*/
+            }
+            //TODO
+            return 0;
         }
 
         #region GUI
@@ -76,6 +82,7 @@ namespace Calculator
 
         static private void DisplayResult(int op1, char oper, int op2, int result)
         {
+            Console.Clear();
             Console.WriteLine("The result of " + op1 + " " + oper + " " + op2 + " is : " + result);
         }
 
